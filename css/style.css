@@ -1,0 +1,121 @@
+/* 
+reset 
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+.game--item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.fa {
+    font-size: 90px;
+}
+
+/*
+ media 
+ */
+
+@media (max-width: 1100px) {
+    .gameWrapper {
+        width: 50%;
+    }
+}
+
+@media (max-width: 890px) {
+    .gameWrapper {
+        width: 80%;
+    }
+}
+
+@media (max-width: 580px) {
+    .gameWrapper {
+        width: 100%;
+    }
+}
+
+@media (max-width: 336px) {
+    .gameWrapper {
+        width: 100%;
+    }
+    .game--item {
+        width: 30%;
+        height: 100px;
+    }
+    .fa {
+        font-size: 50px;
+    }
+}
+
+/* 
+colors
+*/
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.whitesnow {
+    background-color: snow;
+}
+
+.violet {
+    background-color: violet;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.lightblue {
+    background-color: lightblue;
+}
+
+.burlywood {
+    background-color: burlywood;
+}
+
+.cadetblue {
+    background-color: cadetblue;
+}
+
+.tomato {
+    background-color: tomato;
+}
+
+.off {
+    background-color: #eee;
+}
+
+.hidden {
+    background-color: #000;
+}

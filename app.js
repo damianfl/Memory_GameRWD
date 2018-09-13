@@ -80,30 +80,39 @@ document.addEventListener("DOMContentLoaded", function() {
   const startTime = new Date().getTime();
   let activeCard = "";
   let activeCards = [];
-
+  let offCards = []; // here will be stored paired cards
   const gamePairs = cards.length / 2;
   let gameResult = 0;
 
+  //Events happening after clicking the cards
+
   const clickCard = function() {
     activeCard = this;
-    if (activeCard == activeCards[0]) return;
+    if (activeCard == activeCards[0]) return; // if same card was clicked do not add second card to activeCards array
     activeCard.classList.remove("hidden");
-
     if (activeCards.length === 0) {
       activeCards[0] = activeCard;
       return;
     } else {
       cards.forEach(card => card.removeEventListener("click", clickCard));
       activeCards[1] = activeCard;
+      // checking if first value in the array matches second value in the array
 
       setTimeout(function() {
         if (activeCards[0].innerHTML === activeCards[1].innerHTML) {
           gameResult++;
           activeCards.forEach(index => {
             index.classList.add("off");
-            activeCards = [];
-            cards.forEach(card => card.addEventListener("click", clickCard));
+            offCards.push(index);
           });
+          cards.forEach(card => card.addEventListener("click", clickCard));
+          console.log(offCards);
+          offCards.forEach(index => {
+            index.removeEventListener("click", clickCard);
+          });
+
+          activeCards = [];
+
           if (gameResult == gamePairs) {
             const endTime = new Date().getTime();
             const gameTime = (endTime - startTime) / 1000;
@@ -122,7 +131,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   };
 
-  const removeColor = function() {
+  //hiding cards at the beginning of the game
+
+  const hideCards = function() {
     cards.forEach(card => {
       const position = Math.floor(Math.random() * karty.length);
       card.classList.add(karty[position].color);
@@ -137,5 +148,5 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     }, 1000);
   };
-  removeColor();
+  hideCards();
 });

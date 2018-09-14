@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+(function(){
   const karty = [
     {
       color: "red",
@@ -110,14 +111,20 @@ document.addEventListener("DOMContentLoaded", function() {
           offCards.forEach(index => {
             index.removeEventListener("click", clickCard);
           });
-
           activeCards = [];
 
+          // GAME OVER
           if (gameResult == gamePairs) {
             const endTime = new Date().getTime();
             const gameTime = (endTime - startTime) / 1000;
-            alert(`Udało się! Twój wynik to: ${gameTime} sekund`);
-            location.reload();
+            const overlay = document.querySelector(".gameOver");
+            const button = document.querySelector('.gameOver--button')
+            button.addEventListener('click', function(){
+              location.reload();
+            })
+            overlay.classList.remove("notVisible");
+            const time = document.querySelector(".over--item__time");
+            time.innerHTML = ` ${gameTime} s`;
           }
         } else {
           activeCards.forEach(index => {
@@ -149,4 +156,5 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 1000);
   };
   hideCards();
+})()
 });
